@@ -1,18 +1,29 @@
+// router.tsx
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
-import LoginPage from "../Pages/LoginPage/LoginPage";
 import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "./ProtectedRoute";
+import AgendamentoPage from "../Pages/Agendamentos/AgendamentoPage";
+// Change to default import if LoginPage is the default export
+import LoginPage from "../Pages/LoginPage/LoginPage"; 
+import React from 'react';
+import { UserProvider } from '../Pages/Context/UserProvider'; // Import UserProvider
 
+// Create the router
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <UserProvider> {/* Wrap the App with UserProvider */}
+        <App />
+      </UserProvider>
+    ),
     children: [
       { path: "", element: <HomePage /> },
-      { path: "login", element: <LoginPage /> },
+      { path: "login", element: <LoginPage /> }, // Ensure LoginPage is defined
       { path: "register", element: <RegisterPage /> },
+      { path: "agendamento/:userId", element: <AgendamentoPage /> }, // Use :userId to capture the dynamic parameter
     ],
   },
 ]);

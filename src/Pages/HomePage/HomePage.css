@@ -3,117 +3,124 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #F5F5F5; /* Fundo claro e clean */
-    color: #424242; /* Texto principal em cinza escuro */
+    background-color: #F5F5F5; /* Light clean background */
+    color: #424242; /* Dark gray for main text */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
 /* Navbar */
 .navbar {
-    background-color: #FF7043; /* Laranja suave para chamar atenção */
-    padding: 20px 0;
+    background-color: #FF7043; /* Soft orange for attention */
+    padding: 10px 0; /* Reduced padding */
 }
 
+/* Container */
 .container {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Max width for large screens */
     margin: 0 auto;
+    padding: 0 15px; /* Add horizontal padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Logo */
 .logo {
-    font-size: 2.5rem;
-    color: white; /* Logo em branco para contraste */
+    font-size: 2rem; /* Adjusted size for better fit */
+    color: white; /* White logo for contrast */
     cursor: pointer;
 }
 
-/* Navegação */
+/* Navigation */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 10px; /* Reduced gap */
 }
 
 nav li {
     display: inline;
 }
 
-/* Botões de Login e Cadastro */
+/* Buttons for Login and Signup */
 .login-button,
 .signup-button {
-    background-color: white; /* Botões em branco */
-    color: #FF7043; /* Texto em laranja suave */
-    border: 2px solid #FF7043; /* Borda em laranja */
-    padding: 10px 20px;
-    border-radius: 25px; /* Bordas arredondadas */
-    font-size: 1rem;
+    background-color: white; /* Buttons in white */
+    color: #FF7043; /* Text in soft orange */
+    border: 2px solid #FF7043; /* Border in soft orange */
+    padding: 8px 15px; /* Reduced padding */
+    border-radius: 25px; /* Rounded edges */
+    font-size: 0.9rem; /* Slightly smaller font size */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, font-weight 0.3s ease; /* Adiciona transição suave */
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, font-weight 0.3s ease; /* Smooth transition */
 }
 
 .login-button:hover,
 .signup-button:hover {
-    background-color: rgba(255, 255, 255, 0.5); /* Cor branca transparente ao hover */
-    color: white; /* Texto dos botões em branco ao hover */
-    font-weight: bold; /* Efeito de negrito */
-    opacity: 0.8; /* Efeito de leve transparência */
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white on hover */
+    color: white; /* White text on hover */
+    font-weight: bold; /* Bold text on hover */
+    opacity: 0.8; /* Slight transparency effect */
 }
 
-/* Conteúdo Principal */
+/* Main Content */
 .main-content {
     text-align: center;
-    padding: 50px 0;
+    padding: 67px 0; /* Added padding for content */
 }
 
-/* Seção de Introdução */
+/* Introduction Section */
 .intro-section h2 {
-    font-size: 3rem;
-    color: #FF7043; /* Título em laranja suave */
+    font-size: 2.5rem; /* Adjusted size for better fit */
+    color: #FF7043; /* Soft orange for the title */
 }
 
 .intro-section p {
-    font-size: 1.25rem;
-    color: #424242; /* Texto de introdução em cinza escuro */
-    margin-top: 10px;
+    font-size: 1.1rem; /* Adjusted font size */
+    color: #424242; /* Dark gray for introduction text */
+    margin-top: 10px; /* Space above paragraph */
 }
 
-/* Seção de Features */
+/* Features Section */
 .features-section {
     display: flex;
-    justify-content: center; /* Centraliza as features na linha */
-    flex-wrap: wrap; /* Permite que as features se empilhem em dispositivos menores */
-    margin-top: 40px;
-    gap: 20px; /* Espaço entre as features */
+    justify-content: center; /* Center features in a row */
+    flex-wrap: wrap; /* Allow features to wrap on smaller screens */
+    margin-top: 20px; /* Reduced top margin */
+    gap: 15px; /* Space between features */
 }
 
 .feature {
     text-align: center;
-    margin: 20px;
-    flex: 1 1 250px; /* Permite que as features cresçam e encolham com base no espaço disponível */
-    max-width: 300px; /* Limita a largura máxima de cada feature */
+    flex: 1 1 200px; /* Allow features to grow and shrink */
+    max-width: 250px; /* Limit max width */
+    margin: 0; /* Remove margin for alignment */
 }
 
+/* Feature Images */
 .feature img {
-    width: 100%; /* Faz com que a imagem ocupe toda a largura do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 10px;
-    margin-bottom: 20px;
+    width: 100%; /* Make image occupy full width */
+    height: auto; /* Maintain image aspect ratio */
+    border-radius: 10px; /* Rounded edges */
+    margin-bottom: 15px; /* Space below image */
 }
 
+/* Feature Titles and Descriptions */
 .feature h3 {
-    font-size: 1.5rem;
-    color: #FF7043; /* Títulos das features em laranja suave */
+    font-size: 1.3rem; /* Adjusted font size */
+    color: #FF7043; /* Soft orange for feature titles */
 }
 
 .feature p {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Adjusted font size */
 }
 
-/* Rodapé */
+/* Footer */
 .footer {
     text-align: center;
-    padding: 20px;
-    background-color: #FF7043; /* Rodapé em laranja suave */
+    padding: 10px; /* Added padding */
+    background-color: #FF7043; /* Soft orange for footer */
     color: white;
+    margin: 0; /* No margin */
 }

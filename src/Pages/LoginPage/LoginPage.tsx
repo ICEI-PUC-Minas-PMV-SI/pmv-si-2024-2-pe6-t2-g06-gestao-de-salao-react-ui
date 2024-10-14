@@ -1,87 +1,87 @@
-import React from "react";
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useAuth } from '../Context/useAuth';
-import { useForm } from 'react-hook-form';
-import Header from '../../Components/Header';
-import '../LoginPage/LoginPage.css'; // Importando o CSS aqui
+import React, { useState } from 'react';
+import { useAuth } from '../Context/UserProvider'; // Import the useAuth hook
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import './LoginPage.css'; // Import the CSS file
 
-type Props = {};
+const LoginPage: React.FC = () => {
+    const { loginUser } = useAuth(); // Use the loginUser function from context
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [errorMessage, setErrorMessage] = useState<string | null>(null); // Optional: for error messages
+    const [isLoading, setIsLoading] = useState(false); // Loading state
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
-type LoginFormsInputs = {
-    email: string;
-    senha: string;
-};
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setErrorMessage(null); // Reset the error message before submitting
+        setIsLoading(true); // Set loading to true when submitting
 
-const validation = Yup.object().shape({
-    email: Yup.string().required('email is required'),
-    senha: Yup.string().required('Pass is required'),
-});
+        try {
+            const userId = await loginUser(email, senha); // Call the loginUser function and get userId
+            setIsLoading(false); // Set loading to false after the login is done
+            navigate(`/agendamento/${userId}`); // Navigate to agendamentos with userId as a parameter
+        } catch (error) {
+            setIsLoading(false); // Stop the loading indicator
+            setErrorMessage("Login failed. Please check your credentials."); // Set error message
+        }
+    };
 
-const LoginPage = (props: Props) => {
-    const { loginUser } = useAuth();
-    const { register, handleSubmit, formState: { errors }} = useForm<LoginFormsInputs>({resolver: yupResolver(validation)})
-    
-    const handleLogin = ( form: LoginFormsInputs) => {
-        loginUser(form.email, form.senha);
-    }
     return (
-        <section className="login-section">
-            <Header />
+        <div className="login-section">
+            {/* Header Section */}
+            <div className="navbar">
+                <div className="container">
+                    <div className="logo">Beleza Market</div>
+                    <nav>
+                        <ul>
+                            <li><button className="login-button">Login</button></li>
+                            <li><button className="signup-button">Cadastre-se</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
             <div className="login-container">
                 <div className="login-card">
                     <div className="login-content">
-                        <h1 className="login-title">Faça login na sua conta</h1>
-                        <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+                        <h1 className="login-title">Login</h1>
+                        <form className="login-form" onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="email" className="form-label">Email</label>
+                                <label className="form-label">Email:</label>
                                 <input
-                                    type="text"
-                                    id="email"
+                                    type="email"
                                     className="form-input"
-                                    placeholder="Email"
-                                    {...register("email")}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    disabled={isLoading} // Disable the input when loading
                                 />
-                                {errors.email && (
-                                    <p className="error-message">{errors.email.message}</p>
-                                )}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="senha" className="form-label">Senha</label>
+                                <label className="form-label">Senha:</label>
                                 <input
                                     type="password"
-                                    id="senha"
-                                    placeholder="••••••••"
                                     className="form-input"
-                                    {...register("senha")}
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
+                                    required
+                                    disabled={isLoading} // Disable the input when loading
                                 />
-                                {errors.senha && (
-                                    <p className="error-message">{errors.senha.message}</p>
-                                )}
                             </div>
-                            <div className="flex items-center justify-between">
-                                <a href="#" className="forgot-password">
-                                    Esqueceu a senha?
-                                </a>
-                            </div>
-                            <button
-                                type="submit"
-                                className="button" // Usando a classe comum para o botão
-                            >
-                                Entrar
+                            {errorMessage && <p className="error-message">{errorMessage}</p>}
+                            <button type="submit" className="button" disabled={isLoading}>
+                                {isLoading ? "Logging in..." : "Entrar"} {/* Show loading state */}
                             </button>
-                            <p className="signup-prompt">
-                                Não tem uma conta ainda?{" "}
-                                <a href="#" className="signup-link button">
-                                    Cadastre-se
-                                </a>
-                            </p>
+                            <p className="forgot-password">Esqueceu a senha?</p>
                         </form>
+                        <p className="signup-prompt">
+                            Não tem uma conta? <span className="signup-link">Cadastre-se</span>
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default LoginPage;
+export default LoginPage; // Export LoginPage as default

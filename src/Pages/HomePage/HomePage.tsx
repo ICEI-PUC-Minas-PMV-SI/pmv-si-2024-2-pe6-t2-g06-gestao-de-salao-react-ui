@@ -38,7 +38,6 @@ const HomePage: React.FC = () => {
                     </div>
                 </section>
             </main>
-
             <footer className="footer">
                 <p>&copy; 2024 BelezaMarket - Todos os direitos reservados.</p>
             </footer>
