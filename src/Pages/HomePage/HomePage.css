@@ -1,0 +1,119 @@
+/* HomePage.css */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Fundo claro e clean */
+    color: #424242; /* Texto principal em cinza escuro */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FF7043; /* Laranja suave para chamar atenção */
+    padding: 20px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: white; /* Logo em branco para contraste */
+    cursor: pointer;
+}
+
+/* Navegação */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav li {
+    display: inline;
+}
+
+/* Botões de Login e Cadastro */
+.login-button,
+.signup-button {
+    background-color: white; /* Botões em branco */
+    color: #FF7043; /* Texto em laranja suave */
+    border: 2px solid #FF7043; /* Borda em laranja */
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordas arredondadas */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease, font-weight 0.3s ease; /* Adiciona transição suave */
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Cor branca transparente ao hover */
+    color: white; /* Texto dos botões em branco ao hover */
+    font-weight: bold; /* Efeito de negrito */
+    opacity: 0.8; /* Efeito de leve transparência */
+}
+
+/* Conteúdo Principal */
+.main-content {
+    text-align: center;
+    padding: 50px 0;
+}
+
+/* Seção de Introdução */
+.intro-section h2 {
+    font-size: 3rem;
+    color: #FF7043; /* Título em laranja suave */
+}
+
+.intro-section p {
+    font-size: 1.25rem;
+    color: #424242; /* Texto de introdução em cinza escuro */
+    margin-top: 10px;
+}
+
+/* Seção de Features */
+.features-section {
+    display: flex;
+    justify-content: center; /* Centraliza as features na linha */
+    flex-wrap: wrap; /* Permite que as features se empilhem em dispositivos menores */
+    margin-top: 40px;
+    gap: 20px; /* Espaço entre as features */
+}
+
+.feature {
+    text-align: center;
+    margin: 20px;
+    flex: 1 1 250px; /* Permite que as features cresçam e encolham com base no espaço disponível */
+    max-width: 300px; /* Limita a largura máxima de cada feature */
+}
+
+.feature img {
+    width: 100%; /* Faz com que a imagem ocupe toda a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    color: #FF7043; /* Títulos das features em laranja suave */
+}
+
+.feature p {
+    font-size: 1rem;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #FF7043; /* Rodapé em laranja suave */
+    color: white;
+}

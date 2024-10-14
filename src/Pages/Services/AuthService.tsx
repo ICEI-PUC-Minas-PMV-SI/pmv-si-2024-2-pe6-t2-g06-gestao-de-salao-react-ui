@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 // Adapted loginAPI usingy
 export const loginAPI = async (email: string, senha: string) => {
   try {
