@@ -5,6 +5,7 @@ import Header from '../../Components/Header';
 import { FaEye, FaTimes } from 'react-icons/fa';
 import AgendamentoViewDetailsModal from '../../Pages/Agendamentos/AgendamentoViewDetailsModal';
 import '../Agendamentos/AgendamentoPage.css';
+import { cancelAgendamentoAPI } from '../api/AgendamentoAPI';
 
 const AgendamentosPage: React.FC = () => {
     const { token, user } = useAuth();
@@ -15,32 +16,44 @@ const AgendamentosPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedAgendamento, setSelectedAgendamento] = useState<any | null>(null);
 
+    // Função para buscar agendamentos
+    const fetchAgendamentos = async () => {
+        const localStorageToken = localStorage.getItem("token");
+        const storedUserId = Number(localStorage.getItem("userId"));
+
+        if (!localStorageToken || !storedUserId) {
+            setError('Token ou ID de usuário ausente.');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const data = await getAgendamentosAPI(localStorageToken, storedUserId);
+            setAgendamentos(data);
+        } catch (error) {
+            setError('Erro ao buscar os agendamentos');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchAgendamentos = async () => {
-            const localStorageToken = localStorage.getItem("token");
-            const storedUserId = Number(localStorage.getItem("userId"));
-
-            if (!localStorageToken || !storedUserId) {
-                setError('Token ou ID de usuário ausente.');
-                setLoading(false);
-                return;
-            }
-
-            try {
-                const data = await getAgendamentosAPI(localStorageToken, storedUserId);
-                setAgendamentos(data);
-            } catch (error) {
-                setError('Erro ao buscar os agendamentos');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchAgendamentos();
+        fetchAgendamentos(); // Chame a função para buscar os agendamentos ao montar o componente
     }, [token, userId]);
 
-    const handleCancel = (id: number) => {
-        console.log(`Cancelando agendamento com id: ${id}`);
+    // Função para cancelar agendamento e atualizar a lista
+    const handleCancel = async (id: number) => {
+        const localStorageToken = localStorage.getItem("token");
+        if (!localStorageToken || !id) return;
+
+        try {
+            await cancelAgendamentoAPI(localStorageToken, id);
+            console.log(`Agendamento com id ${id} cancelado com sucesso.`);
+            // Atualizar a lista de agendamentos após o cancelamento
+            fetchAgendamentos(); // Chame a função de busca novamente
+        } catch (error) {
+            console.error(`Erro ao cancelar o agendamento com id ${id}:`, error);
+        }
     };
 
     const handleViewDetails = (agendamento: any) => {
