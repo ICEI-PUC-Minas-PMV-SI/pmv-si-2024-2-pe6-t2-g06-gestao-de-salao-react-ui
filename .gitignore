@@ -221,4 +221,8 @@ FakesAssemblies/
 *.opt
 =======
 node_modules
+<<<<<<< HEAD
 >>>>>>> f6de2320 (adicionando modal para ver detalher do agendamento - fazendo funcionar - primiero setup)
+=======
+node_modules/
+>>>>>>> 1cc9f700 (adicionando modal para ver detalher do agendamento - fazendo funcionar - primiero setup)
