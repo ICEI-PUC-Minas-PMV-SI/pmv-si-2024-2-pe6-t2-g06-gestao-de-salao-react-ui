@@ -132,7 +132,8 @@ const AgendamentosPage: React.FC = () => {
                                                 <p><strong>Data:</strong> {formatDate(agendamento.dataAgendamento)}</p>
                                                 <p><strong>Hora:</strong> {agendamento.horaAgendamento}</p>
                                                 <p><strong>Status:</strong> {agendamento.status}</p>
-                                                <p><strong>Usuário ID:</strong> {agendamento.usuarioId}</p>
+                                                <p><strong>Cliente:</strong> {agendamento.usuario.nome}</p>
+                                                <p><strong>Observacoes:</strong> {agendamento.observacoes}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -161,7 +162,8 @@ const AgendamentosPage: React.FC = () => {
                                                 <p><strong>Data:</strong> {formatDate(agendamento.dataAgendamento)}</p>
                                                 <p><strong>Hora:</strong> {agendamento.horaAgendamento}</p>
                                                 <p><strong>Status:</strong> {agendamento.status}</p>
-                                                <p><strong>Usuário ID:</strong> {agendamento.usuarioId}</p>
+                                                <p><strong>Cliente:</strong> {agendamento.usuario.nome}</p>
+                                                <p><strong>Observacoes:</strong> {agendamento.observacoes}</p>
                                             </div>
                                         </div>
                                     ))}
