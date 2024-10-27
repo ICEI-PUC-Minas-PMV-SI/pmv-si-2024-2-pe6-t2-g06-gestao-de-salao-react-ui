@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5e0b381a (adicionando mais no gitignore)
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
-<<<<<<< HEAD
 /node_modules/
 node_modules/
 
@@ -406,13 +401,3 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-<<<<<<< HEAD
-=======
-node_modules
-<<<<<<< HEAD
->>>>>>> f6de2320 (adicionando modal para ver detalher do agendamento - fazendo funcionar - primiero setup)
-=======
-node_modules/
->>>>>>> 1cc9f700 (adicionando modal para ver detalher do agendamento - fazendo funcionar - primiero setup)
-=======
->>>>>>> 5e0b381a (adicionando mais no gitignore)
