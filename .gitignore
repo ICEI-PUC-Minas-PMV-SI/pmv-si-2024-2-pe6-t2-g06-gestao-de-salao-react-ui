@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -218,3 +219,6 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+=======
+node_modules
+>>>>>>> f6de2320 (adicionando modal para ver detalher do agendamento - fazendo funcionar - primiero setup)
