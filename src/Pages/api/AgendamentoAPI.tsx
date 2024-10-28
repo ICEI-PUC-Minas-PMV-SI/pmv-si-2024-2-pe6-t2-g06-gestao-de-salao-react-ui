@@ -25,6 +25,7 @@ export const getAgendamentosAPI = async (token: string, userId: number) => {
 };
 
 // Função para cancelar um agendamento
+// Função para cancelar um agendamento
 export const cancelAgendamentoAPI = async (token: string, agendamentoId: number) => {
   try {
     const response = await fetch(`https://localhost:5001/gateway/agendamentos/${agendamentoId}/cancelar`, {
@@ -39,7 +40,8 @@ export const cancelAgendamentoAPI = async (token: string, agendamentoId: number)
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
+    // Verificar se há um corpo de resposta
+    const data = response.status !== 204 ? await response.json() : null; // status 204 indica sem conteúdo
     console.log('Agendamento cancelado:', data);
     return data;
   } catch (error) {
@@ -47,3 +49,4 @@ export const cancelAgendamentoAPI = async (token: string, agendamentoId: number)
     throw error;
   }
 };
+

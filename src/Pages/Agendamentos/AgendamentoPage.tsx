@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../Context/useAuth';
 import { getAgendamentosAPI } from '../api/AgendamentoAPI';
 import Header from '../../Components/Header';
-import { FaEye, FaTimes } from 'react-icons/fa';
+import { FaEye, FaPlus, FaTimes } from 'react-icons/fa';
 import AgendamentoViewDetailsModal from '../../Pages/Agendamentos/AgendamentoViewDetailsModal';
+import AgendamentoCreateModal from '../../Pages/Agendamentos/AgendamentoCreateModal'; // Importação da modal de criação
 import '../Agendamentos/AgendamentoPage.css';
 import { cancelAgendamentoAPI } from '../api/AgendamentoAPI';
 
@@ -15,6 +16,7 @@ const AgendamentosPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedAgendamento, setSelectedAgendamento] = useState<any | null>(null);
+    const [createModalOpen, setCreateModalOpen] = useState(false); // Estado para a modal de criação
 
     // Função para buscar agendamentos
     const fetchAgendamentos = async () => {
@@ -49,11 +51,16 @@ const AgendamentosPage: React.FC = () => {
         try {
             await cancelAgendamentoAPI(localStorageToken, id);
             console.log(`Agendamento com id ${id} cancelado com sucesso.`);
-            // Atualizar a lista de agendamentos após o cancelamento
             fetchAgendamentos(); // Chame a função de busca novamente
+            // Recarregar a página após o cancelamento
+            window.location.reload();
         } catch (error) {
             console.error(`Erro ao cancelar o agendamento com id ${id}:`, error);
         }
+    };
+
+    const handleCreateAgendamento = () => {
+        setCreateModalOpen(true);
     };
 
     const handleViewDetails = (agendamento: any) => {
@@ -64,6 +71,10 @@ const AgendamentosPage: React.FC = () => {
     const closeModal = () => {
         setModalOpen(false);
         setSelectedAgendamento(null);
+    };
+
+    const closeCreateModal = () => {
+        setCreateModalOpen(false);
     };
 
     const isPastAgendamento = (dataAgendamento: string) => {
@@ -114,6 +125,9 @@ const AgendamentosPage: React.FC = () => {
             <Header />
             <main className="main-content">
                 <h1>Meus Agendamentos</h1>
+                <button className="create-agendamento-button" onClick={handleCreateAgendamento}>
+                    <FaPlus /> Criar Agendamento
+                </button>
                 {error && <p className="error-message">{error}</p>}
 
                 {sortedAgendamentos.length === 0 ? (
@@ -196,6 +210,15 @@ const AgendamentosPage: React.FC = () => {
                     open={modalOpen}
                     onClose={closeModal}
                     agendamento={selectedAgendamento}
+                />
+            )}
+
+            {/* Modal de criação de agendamento */}
+            {createModalOpen && (
+                <AgendamentoCreateModal
+                    open={createModalOpen}
+                    onClose={closeCreateModal}
+                    agendamento={null} // Adjusted to null
                 />
             )}
         </div>

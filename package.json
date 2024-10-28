@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^6.1.5",
+    "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^6.1.5",
     "@mui/system": "^6.1.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -33,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prestart": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
