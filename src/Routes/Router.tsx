@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "login", element: <LoginPage /> }, // Ensure LoginPage is defined
-      { path: "register", element: <RegisterPage /> },
+      { path: "register", element: <RegisterPage /> }, // cadastro usuario
       { path: "agendamento/:userId", element: <AgendamentoPage /> }, // Use :userId to capture the dynamic parameter
     ],
   },

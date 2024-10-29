@@ -20,7 +20,7 @@ const Header: React.FC = () => {
                             </button>
                         </li>
                         <li>
-                            <button className="signup-button" onClick={() => navigate('/cadastro')}>
+                            <button className="signup-button" onClick={() => navigate('/register')}>
                                 Cadastre-se
                             </button>
                         </li>
