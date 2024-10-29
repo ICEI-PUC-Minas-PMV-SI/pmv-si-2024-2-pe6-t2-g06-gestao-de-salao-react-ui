@@ -1,0 +1,84 @@
+/* Estilo Geral */
+
+
+.logo {
+  font-size: 2rem; /* Adjusted size for better fit */
+  color: white; /* White logo for contrast */
+  cursor: pointer; /* Pointer cursor */
+  text-align: center;
+}
+
+.navbar {
+  background-color: #FF7043; /* Cor do navbar */
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+}
+
+.cadastro-section {
+  padding: 20px;
+}
+
+.cadastro-card {
+  background: white; /* Cor do card */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.cadastro-title {
+  text-align: center;
+  color: #FF7043; /* Cor do título */
+  margin-bottom: 20px;
+}
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-group:last-child {
+  margin-right: 0; /* Remove margem do último item */
+}
+
+.form-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #FF7043; /* Cor do foco */
+}
+
+.button {
+  background-color: #FF7043; /* Cor do botão */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #FF5722; /* Cor do hover */
+}
