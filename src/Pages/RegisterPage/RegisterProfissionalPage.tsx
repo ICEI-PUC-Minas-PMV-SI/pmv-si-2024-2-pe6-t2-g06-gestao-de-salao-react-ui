@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegisterUsuarioPage.css';
-import { registerUser } from '../api/UsuarioAPI';
-
+import { registerUser } from '../api/UsuarioAPI'; // Função para registrar o usuário
 
 interface Usuario {
   nome: string;
@@ -16,6 +15,7 @@ interface Usuario {
   dataNascimento: string;
   genero: number;
   perfil: number;
+  cnpj: string; // Campo CNPJ
 }
 
 const generoOptions = [
@@ -25,8 +25,9 @@ const generoOptions = [
 ];
 
 const perfilOptions = [
-  { label: 'Administrador', value: 0 },
-  { label: 'Profissional', value: 1 },
+  
+  { label: 'Profissional', value: 0 },
+  { label: 'Administrador', value: 1 },
 ];
 
 const CadastroUsuario: React.FC = () => {
@@ -42,10 +43,12 @@ const CadastroUsuario: React.FC = () => {
     dataNascimento: '',
     genero: generoOptions[0].value,
     perfil: perfilOptions[0].value,
+    cnpj: '',
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCNPJValid, setIsCNPJValid] = useState(false); // Estado para validar o CNPJ
 
   const navigate = useNavigate();
 
@@ -56,13 +59,34 @@ const CadastroUsuario: React.FC = () => {
     });
   };
 
+  // Função para validar CNPJ através de API
+  const handleCNPJValidation = async () => {
+    setErrorMessage(null);
+    setIsLoading(true);
+    try {
+      const response = await fetch(`https://localhost:5001/gateway/saloes/${usuario.cnpj}`);
+      const data = await response.json();
+
+      if (response.ok ) {
+        setIsCNPJValid(true);
+      } else {
+        setErrorMessage('CNPJ não encontrado ou inválido teste.'); // Mensagem de erro se o CNPJ não for válido
+        setIsCNPJValid(false);
+      }
+    } catch (error) {
+      setErrorMessage('Erro ao validar CNPJ.'); // Tratamento de erro
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
     setIsLoading(true);
 
     try {
-      await registerUser(usuario); // Pass usuario data to registerUser
+      await registerUser(usuario); // Passa os dados do usuário para registerUser
       setIsLoading(false);
       navigate(`/login`);
     } catch (error) {
@@ -76,13 +100,31 @@ const CadastroUsuario: React.FC = () => {
       <div className="login-section">
         <div className="navbar">
           <div className="container">
-            <div className="logo" >Cadastro de Profissionais</div>
+            <div className="logo">Cadastro de Profissionais</div>
           </div>
         </div>
         <div className="cadastro-section">
           <div className="cadastro-card">
             <div className="cadastro-content">
               <form className="cadastro-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">CNPJ:</label>
+                    <input
+                      type="text"
+                      name="cnpj"
+                      className="form-input"
+                      value={usuario.cnpj}
+                      onChange={handleChange}
+                      required
+                    />
+                    <button type="button" onClick={handleCNPJValidation} disabled={isLoading}>
+                      Validar CNPJ
+                    </button>
+                  </div>
+                </div>
+
+                {/* Outros campos do formulário */}
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Nome:</label>
@@ -93,6 +135,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.nome}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                   <div className="form-group">
@@ -104,6 +147,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.email}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                 </div>
@@ -117,6 +161,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.senha}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                   <div className="form-group">
@@ -128,6 +173,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.telefone}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                 </div>
@@ -141,6 +187,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.endereco}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                   <div className="form-group">
@@ -152,6 +199,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.cidade}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                 </div>
@@ -165,6 +213,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.estado}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                   <div className="form-group">
@@ -176,6 +225,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.cep}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                 </div>
@@ -189,6 +239,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.dataNascimento}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     />
                   </div>
                   <div className="form-group">
@@ -199,6 +250,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.genero}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     >
                       {generoOptions.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -217,6 +269,7 @@ const CadastroUsuario: React.FC = () => {
                       value={usuario.perfil}
                       onChange={handleChange}
                       required
+                      disabled={!isCNPJValid} // Desabilitar se o CNPJ não for válido
                     >
                       {perfilOptions.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -226,7 +279,10 @@ const CadastroUsuario: React.FC = () => {
                     </select>
                   </div>
                 </div>
-                <button type="submit" className="button">Cadastrar</button>
+                <button type="submit" className="button" disabled={!isCNPJValid || isLoading}>
+                  Cadastrar
+                </button>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
               </form>
             </div>
           </div>
@@ -235,12 +291,5 @@ const CadastroUsuario: React.FC = () => {
     </div>
   );
 };
+
 export default CadastroUsuario;
-
-function setErrorMessage(arg0: null) {
-  throw new Error('Function not implemented.');
-}
-function setIsLoading(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
-
