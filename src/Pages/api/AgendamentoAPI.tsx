@@ -25,7 +25,6 @@ export const getAgendamentosAPI = async (token: string, userId: number) => {
 };
 
 // Função para cancelar um agendamento
-// Função para cancelar um agendamento
 export const cancelAgendamentoAPI = async (token: string, agendamentoId: number) => {
   try {
     const response = await fetch(`https://localhost:5001/gateway/agendamentos/${agendamentoId}/cancelar`, {
@@ -50,3 +49,42 @@ export const cancelAgendamentoAPI = async (token: string, agendamentoId: number)
   }
 };
 
+// Função para criar um agendamento
+export const createAgendamentoAPI = async (token: string, agendamentoData: object) => {
+  try {
+      const response = await fetch(`https://localhost:5001/gateway/agendamentos`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(agendamentoData),
+      });
+
+      if (!response.ok) {
+          throw new Error(`Erro ao registrar usuário: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      return data;
+  } catch (error) {
+      console.error('Error on register user:', error);
+      throw error;
+  }
+};
+
+
+// {
+//   "id": 0,
+//   "dataAgendamento": "2024-09-25",
+//   "horaAgendamento": "12:00:00",
+//   "status": "Pendente",
+//   "observacoes": "Teste aula",
+//   "servicoCategoriaId": 1,
+//   "servicoSubCategoriaId": 2,
+//   "profissionalId": 11,
+//   "usuarioId": 9
+  
+// }
