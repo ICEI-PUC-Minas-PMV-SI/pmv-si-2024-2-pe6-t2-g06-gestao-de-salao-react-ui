@@ -1,0 +1,70 @@
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.header {
+  background-color: #FF6700;
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 1000; 
+  margin-bottom: 20px;
+}
+
+
+.salon-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  width: 500px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; 
+}
+
+.salon-form input {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.salon-form button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.salon-form button:hover {
+  background-color: #ff6600c9;
+}
+
+
+.footer {
+  background-color: #FF6700;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; 
+}
+
