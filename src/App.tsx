@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { UserProvider } from './Pages/Context/useAuth';
+import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div className="App">
+    <>
+    <UserProvider>
+    {/* <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,8 +24,13 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </div> */}
+    <Outlet />
+    <ToastContainer />
+    </UserProvider>
+    </>
+    
+    
   );
 }
-
 export default App;
