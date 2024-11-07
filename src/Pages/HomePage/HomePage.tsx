@@ -1,6 +1,11 @@
 import React from 'react';
 import Header from '../../Components/Header'; // Ajuste o caminho conforme necessário
 import './HomePage.css';
+import img1 from '../../img/img1.avif'
+import img2 from '../../img/img2.jpg'
+import img3 from '../../img/img3.jpg'
+import img4 from '../../img/img4.jpeg'
+import img6 from '../../img/img2.jpg'
 
 const HomePage: React.FC = () => {
     return (
@@ -13,26 +18,30 @@ const HomePage: React.FC = () => {
                 </section>
 
                 <section className="features-section">
-                    <div className="feature">
-                        <img src="https://via.placeholder.com/300" alt="Serviços de Beleza" />
+                    <div className="feature img">
+                        <img src={img1} />
+                        {/* <img src="https://via.placeholder.com/300" alt="Serviços de Beleza" /> */}
                         <h3>Encontre Profissionais</h3>
                         <p>Agende com os melhores profissionais da sua região, de forma rápida e fácil.</p>
                     </div>
 
                     <div className="feature">
-                        <img src="https://via.placeholder.com/300" alt="Salão de Beleza" />
+                        <img src={img6} />
+                        {/* <img src="https://via.placeholder.com/300" alt="Salão de Beleza" /> */}
                         <h3>Encontre Salões</h3>
                         <p>Descubra salões renomados próximos a você, com agendamentos simplificados.</p>
                     </div>
 
                     <div className="feature">
-                        <img src="https://via.placeholder.com/300" alt="Agendamento Fácil" />
+                        <img src={img3} />
+                        {/* <img src="https://via.placeholder.com/300" alt="Agendamento Fácil" /> */}
                         <h3>Agendamento Fácil</h3>
                         <p>Com poucos cliques, reserve seus horários no conforto do seu lar.</p>
                     </div>
 
                     <div className="feature">
-                        <img src="https://via.placeholder.com/300" alt="Promoções Exclusivas" />
+                        <img src={img4} />
+                        {/* <img src="https://via.placeholder.com/300" alt="Promoções Exclusivas" /> */}
                         <h3>Promoções e Ofertas</h3>
                         <p>Receba ofertas e pacotes exclusivos diretamente no app, sempre com ótimos descontos.</p>
                     </div>

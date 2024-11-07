@@ -93,18 +93,19 @@ nav li {
 
 .feature {
     text-align: center;
-    flex: 1 1 200px; /* Allow features to grow and shrink */
-    max-width: 250px; /* Limit max width */
-    margin: 0; /* Remove margin for alignment */
+    max-width: 450px;
+    margin: 0;
+    
 }
 
-/* Feature Images */
 .feature img {
-    width: 100%; /* Make image occupy full width */
-    height: auto; /* Maintain image aspect ratio */
-    border-radius: 10px; /* Rounded edges */
-    margin-bottom: 15px; /* Space below image */
+    width: 100%; /* Make images fill the width of .feature */
+    max-width: 450px; /* Limit image max width */
+    height: 200; /* Maintain aspect ratio */
+    border: 1px solid lightgrey; /* Add light grey border */
+    box-sizing: border-box; /* Ensure border is included in the element's dimensions */
 }
+
 
 /* Feature Titles and Descriptions */
 .feature h3 {
